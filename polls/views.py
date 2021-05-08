@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, redirect, render,HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render,HttpResponseRedirect
 from .models import Question,Choice
+from django.urls import reverse
 
 # Create your views here.
 
@@ -30,11 +31,12 @@ def vote(request,question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return redirect('polls:results')
+        # return redirect('polls:results',pk=question_id)
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-def results(request):
-    questions = Question.objects.all()
+def results(request,question_id):
+    question = get_object_or_404(Question,pk=question_id)
 
-    context ={ 'question':questions}
+    context ={ 'question':question}
     return render(request,'polls/results.html',context)

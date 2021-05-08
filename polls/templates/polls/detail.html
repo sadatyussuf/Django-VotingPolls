@@ -2,18 +2,18 @@
 
 
 {% block content %}
+
+{% if error_message %}
+<div class="flex flex-col text-center w-full mb-4">
+    <h1 class="sm:text-3xl text-2xl font-small title-font mb-4 text-red-900">{{error_message}}</h1>
+</div>
+{% endif %}
+
 <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 py-4 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{question.question_text}}</h1>
         </div>
-
-        
-        {% if error_message %}
-            <div class="flex flex-col text-center w-full mb-12">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{error_message}}</h1>
-            </div>
-        {% endif %}
             
         <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
             <div class="relative flex-grow w-full">
@@ -23,7 +23,7 @@
                     {% for choice in question.choice_set.all %}
                     <!-- <h1>{{choice.id}}</h1> -->
                     <!-- <h1>choice{{forloop.counter}}</h1> -->
-                    <div class="block">
+                    <div class="block pb-5 ">
                     <input 
                         type="radio" 
                         name="choice"
