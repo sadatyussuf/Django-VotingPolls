@@ -1,2 +1,2 @@
-# A Django Polls Voting Project
+# A Django Polls Voting Project (Not Completed!!)
 
